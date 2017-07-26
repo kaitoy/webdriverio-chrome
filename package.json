@@ -1,0 +1,18 @@
+{
+  "name": "webdriverio-chrome",
+  "version": "0.0.1",
+  "description": "Browser test stack with WebdriverIO and headless Chrome",
+  "scripts": {
+    "test": "wdio"
+  },
+  "author": "Kaito Yamada",
+  "license": "GPLv2",
+  "devDependencies": {
+    "fibers": "^2.0.0",
+    "selenium-standalone": "^6.5.0",
+    "wdio-jasmine-framework": "^0.3.1",
+    "wdio-selenium-standalone-service": "^0.0.9",
+    "wdio-spec-reporter": "^0.1.0",
+    "webdriverio": "^4.8.0"
+  }
+}
