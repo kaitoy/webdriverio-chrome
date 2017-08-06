@@ -3,12 +3,14 @@
   "version": "0.0.1",
   "description": "Browser test stack with WebdriverIO and headless Chrome",
   "scripts": {
-    "test": "wdio"
+    "test": "wdio",
+    "pla": "proxy-login-automator.js"
   },
   "author": "Kaito Yamada",
   "license": "GPLv2",
   "devDependencies": {
     "fibers": "^2.0.0",
+    "proxy-login-automator": "^1.1.5",
     "selenium-standalone": "^6.5.0",
     "wdio-jasmine-framework": "^0.3.1",
     "wdio-selenium-standalone-service": "^0.0.9",

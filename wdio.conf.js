@@ -1,7 +1,7 @@
 const CHROME_BIN_PATH = '/usr/bin/chromium-browser';
 
 exports.config = {
-    
+
     //
     // ==================
     // Specify Test Files
@@ -45,7 +45,7 @@ exports.config = {
         // grid with only 5 firefox instances available you can make sure that not more than
         // 5 instances get started at a time.
         maxInstances: 5,
-        //
+
         browserName: 'chrome',
         chromeOptions: {
             binary: CHROME_BIN_PATH,
@@ -53,6 +53,9 @@ exports.config = {
                 'headless',
                 'disable-gpu',
                 'no-sandbox',
+
+                // Uncomment the next line and run "npm run pla" for ploxy authentication
+                // 'proxy-server=localhost:18080',
             ],
         },
     }],
@@ -122,6 +125,12 @@ exports.config = {
             '-Dwebdriver.chrome.driver=/usr/bin/chromedriver'
         ]
     },
+
+    // Uncomment the following block in a proxy environment.
+    // seleniumInstallArgs: {
+    //   proxy: 'http://userId:password@proxy.com:8080'
+    // },
+
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
     // see also: http://webdriver.io/guide/testrunner/frameworks.html
@@ -148,7 +157,7 @@ exports.config = {
             // do something
         }
     },
-    
+
     //
     // =====
     // Hooks
