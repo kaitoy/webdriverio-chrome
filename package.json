@@ -4,14 +4,13 @@
   "description": "Browser test stack with WebdriverIO and headless Chrome",
   "scripts": {
     "test": "wdio",
-    "pla": "proxy-login-automator.js"
+    "pla": "proxy-login-automator.js -local_port 18080 -remote_host proxy.com -remote_port 8080 -usr userId -pwd password"
   },
   "author": "Kaito Yamada",
-  "license": "GPLv2",
+  "license": "MIT",
   "devDependencies": {
-    "fibers": "^2.0.0",
     "proxy-login-automator": "^1.1.5",
-    "selenium-standalone": "^6.5.0",
+    "selenium-standalone": "^6.6.0",
     "wdio-jasmine-framework": "^0.3.1",
     "wdio-selenium-standalone-service": "^0.0.9",
     "wdio-spec-reporter": "^0.1.0",

@@ -1,5 +1,3 @@
-const CHROME_BIN_PATH = '/usr/bin/chromium-browser';
-
 exports.config = {
 
     //
@@ -12,7 +10,7 @@ exports.config = {
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
     specs: [
-        './specs/**/*.js'
+        './test/specs/**/*.js'
     ],
     // Patterns to exclude.
     exclude: [
@@ -48,7 +46,7 @@ exports.config = {
 
         browserName: 'chrome',
         chromeOptions: {
-            binary: CHROME_BIN_PATH,
+            binary: '/usr/bin/chromium-browser',
             args: [
                 'headless',
                 'disable-gpu',
@@ -85,7 +83,7 @@ exports.config = {
     //
     // Set a base URL in order to shorten url command calls. If your url parameter starts
     // with "/", then the base url gets prepended.
-    baseUrl: 'http://localhost:4444',
+    baseUrl: 'http://localhost',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
@@ -122,13 +120,13 @@ exports.config = {
     services: ['selenium-standalone'],
     seleniumArgs: {
         javaArgs: [
-            '-Dwebdriver.chrome.driver=/usr/bin/chromedriver'
-        ]
+            '-Dwebdriver.chrome.driver=/usr/bin/chromedriver',
+        ],
     },
 
     // Uncomment the following block in a proxy environment.
     // seleniumInstallArgs: {
-    //   proxy: 'http://userId:password@proxy.com:8080'
+    //   proxy: 'http://userId:password@proxy.com:8080',
     // },
 
     // Framework you want to run your specs with.
@@ -142,13 +140,14 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: http://webdriver.io/guide/testrunner/reporters.html
-    // reporters: ['dot'],
+    reporters: ['spec'],
+
     //
     // Options to be passed to Jasmine.
     jasmineNodeOpts: {
         //
         // Jasmine default timeout
-        defaultTimeoutInterval: 50000,
+        defaultTimeoutInterval: 10000,
         //
         // The Jasmine framework allows interception of each assertion in order to log the state of the application
         // or website depending on the result. For example, it is pretty handy to take a screenshot every time
