@@ -30,3 +30,5 @@ RUN apk add --update --no-cache \
     rm -rf /tmp/* && \
     yarn cache clean && \
     apk del --purge make gcc g++ python curl
+
+WORKDIR /root/webdriverio-chrome

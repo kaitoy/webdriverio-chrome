@@ -1,4 +1,5 @@
 
 ```
-docker run -it --cap-add=SYS_ADMIN webdriverio-chrome sh
+$ docker run -it kaitoy/webdriverio-chrome sh
+~/webdriverio-chrome # yarn test
 ```
