@@ -7,6 +7,7 @@ RUN apk add --update --no-cache \
             ttf-freefont \
             chromium \
             chromium-chromedriver \
+            xvfb \
             openjdk8 \
             nodejs \
             yarn \
@@ -30,5 +31,7 @@ RUN apk add --update --no-cache \
     rm -rf /tmp/* && \
     yarn cache clean && \
     apk del --purge make gcc g++ python curl
+
+ENV DISPLAY :99
 
 WORKDIR /root/webdriverio-chrome
