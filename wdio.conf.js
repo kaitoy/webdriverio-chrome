@@ -1,3 +1,30 @@
+const proxyHost = process.env.PROXY_HOST;
+const proxyPort = process.env.PROXY_PORT;
+const proxyUser = process.env.PROXY_USER;
+const proxyPassword = process.env.PROXY_PASSWORD;
+
+const capabilities = [{
+    // maxInstances can get overwritten per capability. So if you have an in-house Selenium
+    // grid with only 5 firefox instances available you can make sure that not more than
+    // 5 instances get started at a time.
+    maxInstances: 5,
+
+    browserName: 'chrome',
+    chromeOptions: {
+        binary: '/usr/bin/chromium-browser',
+        args: [
+            'headless',
+            'disable-gpu',
+            'no-sandbox',
+        ],
+    },
+}];
+const seleniumInstallArgs = {};
+if (proxyHost) {
+    capabilities[0].chromeOptions.args.push('proxy-server=localhost:18080');
+    seleniumInstallArgs.proxy = `http://${proxyUser}:${proxyPassword}@${proxyHost}:${proxyPort}`;
+}
+
 exports.config = {
 
     //
@@ -38,25 +65,7 @@ exports.config = {
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://docs.saucelabs.com/reference/platforms-configurator
     //
-    capabilities: [{
-        // maxInstances can get overwritten per capability. So if you have an in-house Selenium
-        // grid with only 5 firefox instances available you can make sure that not more than
-        // 5 instances get started at a time.
-        maxInstances: 5,
-
-        browserName: 'chrome',
-        chromeOptions: {
-            binary: '/usr/bin/chromium-browser',
-            args: [
-                'headless',
-                'disable-gpu',
-                'no-sandbox',
-
-                // Uncomment the next line and run "npm run pla" for ploxy authentication
-                // 'proxy-server=localhost:18080',
-            ],
-        },
-    }],
+    capabilities,
     //
     // ===================
     // Test Configurations
@@ -124,10 +133,7 @@ exports.config = {
         ],
     },
 
-    // Uncomment the following block in a proxy environment.
-    // seleniumInstallArgs: {
-    //   proxy: 'http://userId:password@proxy.com:8080',
-    // },
+    seleniumInstallArgs,
 
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
