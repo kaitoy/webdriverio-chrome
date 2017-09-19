@@ -7,7 +7,7 @@ RUN apk add --update --no-cache \
             ttf-freefont \
             chromium \
             chromium-chromedriver \
-            openjdk8 \
+            openjdk8-jre \
             nodejs \
             yarn \
             make gcc g++ python \
