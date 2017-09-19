@@ -4,8 +4,7 @@
   "description": "Browser test stack with WebdriverIO and headless Chrome",
   "scripts": {
     "test": "wdio",
-    "pla": "proxy-login-automator.js -local_port 18080 -remote_host proxy.com -remote_port 8080 -usr userId -pwd password",
-    "x": "Xvfb :99"
+    "pla": "proxy-login-automator.js -local_port 18080 -remote_host proxy.com -remote_port 8080 -usr userId -pwd password"
   },
   "author": "Kaito Yamada",
   "license": "GPL-2.0",
