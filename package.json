@@ -8,7 +8,7 @@
     "x": "Xvfb :99"
   },
   "author": "Kaito Yamada",
-  "license": "GPLv2",
+  "license": "GPL-2.0",
   "devDependencies": {
     "proxy-login-automator": "^1.1.5",
     "selenium-standalone": "^6.6.0",
