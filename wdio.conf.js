@@ -2,6 +2,7 @@ const proxyHost = process.env.PROXY_HOST;
 const proxyPort = process.env.PROXY_PORT;
 const proxyUser = process.env.PROXY_USER;
 const proxyPassword = process.env.PROXY_PASSWORD;
+const defaultTimeoutInterval = process.env.JASMINE_TIMEOUT || 10000;
 
 const capabilities = [{
     // maxInstances can get overwritten per capability. So if you have an in-house Selenium
@@ -153,7 +154,7 @@ exports.config = {
     jasmineNodeOpts: {
         //
         // Jasmine default timeout
-        defaultTimeoutInterval: 10000,
+        defaultTimeoutInterval,
         //
         // The Jasmine framework allows interception of each assertion in order to log the state of the application
         // or website depending on the result. For example, it is pretty handy to take a screenshot every time
