@@ -1,6 +1,27 @@
-From alpine:edge
+#
+# First Stage
+#
+FROM alpine:edge AS pre
 
-ADD package.json wdio.conf.js yarn.lock test-sample.js /root/webdriverio-chrome/
+ADD package.json yarn.lock /tmp/
+WORKDIR /tmp
+
+RUN apk add --update make gcc g++ python curl yarn
+RUN curl https://noto-website.storage.googleapis.com/pkgs/NotoSansCJKjp-hinted.zip -O
+RUN unzip NotoSansCJKjp-hinted.zip
+
+RUN yarn global add node-gyp
+RUN yarn
+
+#
+# Second Stage
+#
+FROM alpine:edge
+
+ADD package.json wdio.conf.js yarn.lock /root/webdriverio-chrome/
+ADD test-sample.js /root/webdriverio-chrome/test/specs/
+COPY --from=pre /tmp/node_modules /root/webdriverio-chrome/node_modules/
+COPY --from=pre /tmp/*.otf /usr/share/fonts/noto/
 
 RUN apk add --update --no-cache \
             udev \
@@ -9,26 +30,9 @@ RUN apk add --update --no-cache \
             chromium-chromedriver \
             openjdk8-jre \
             nodejs \
-            yarn \
-            make gcc g++ python \
-            curl && \
-    cd /tmp && \
-    curl https://noto-website.storage.googleapis.com/pkgs/NotoSansCJKjp-hinted.zip -O && \
-    unzip NotoSansCJKjp-hinted.zip && \
-    mkdir -p /usr/share/fonts/noto && \
-    cp *.otf /usr/share/fonts/noto && \
+            yarn && \
     chmod 644 -R /usr/share/fonts/noto/ && \
     fc-cache -fv && \
-    cd /root/webdriverio-chrome/ && \
-    yarn global add node-gyp && \
-    yarn && \
-    mkdir -p test/specs && \
-    mv test-sample.js test/specs/ && \
-    mkdir screenshots && \
-    yarn global remove node-gyp && \
-    rm -rf /root/.node-gyp && \
-    rm -rf /tmp/* && \
-    yarn cache clean && \
-    apk del --purge make gcc g++ python curl
+    mkdir /root/webdriverio-chrome/screenshots
 
 WORKDIR /root/webdriverio-chrome
