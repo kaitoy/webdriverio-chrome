@@ -24,7 +24,7 @@ FROM alpine:edge
 COPY --from=pre /root/webdriverio-chrome/ /root/webdriverio-chrome/
 COPY --from=pre /tmp/*.otf /usr/share/fonts/noto/
 
-RUN apk add --update --no-cache \
+RUN apk add --no-cache \
             udev \
             ttf-freefont \
             chromium \
