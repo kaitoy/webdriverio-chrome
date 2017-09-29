@@ -1,6 +1,6 @@
 {
   "name": "webdriverio-chrome",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Browser test stack with WebdriverIO and headless Chrome",
   "scripts": {
     "test": "wdio",
