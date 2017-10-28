@@ -32,7 +32,6 @@ RUN apk add --no-cache \
             openjdk8-jre \
             nodejs \
             yarn && \
-    chmod 644 -R /usr/share/fonts/noto/ && \
     fc-cache -fv
 
 WORKDIR /root/webdriverio-chrome
