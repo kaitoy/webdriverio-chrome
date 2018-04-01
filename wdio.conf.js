@@ -160,7 +160,10 @@ exports.config = {
         // or website depending on the result. For example, it is pretty handy to take a screenshot every time
         // an assertion fails.
         expectationResultHandler: function(passed, assertion) {
-            // do something
+            if(passed) {
+                return;
+            }
+            browser.saveScreenshot('./errorShots/assertionError_' + assertion.error.message + '.png');
         }
     },
 

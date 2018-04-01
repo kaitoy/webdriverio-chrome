@@ -1,7 +1,7 @@
 #
 # First Stage
 #
-FROM alpine:edge AS pre
+FROM alpine:3.7 AS pre
 
 ADD package.json wdio.conf.js yarn.lock /root/webdriverio-chrome/
 ADD test-sample.js /root/webdriverio-chrome/test/specs/
@@ -19,7 +19,7 @@ RUN yarn
 #
 # Second Stage
 #
-FROM alpine:edge
+FROM alpine:3.7
 
 COPY --from=pre /root/webdriverio-chrome/ /root/webdriverio-chrome/
 COPY --from=pre /tmp/*.otf /usr/share/fonts/noto/
